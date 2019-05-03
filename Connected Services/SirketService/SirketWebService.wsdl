@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertSirket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:Sirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Sirket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sirketId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sehir" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="adres" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracSayisi" type="s:unsignedShort" />
+          <s:element minOccurs="1" maxOccurs="1" name="sirketPuani" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertSirketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertSirketResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSirket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSirketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteSirketResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAllSirkets">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectAllSirketsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAllSirketsResult" type="tns:ArrayOfSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSirket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Sirket" nillable="true" type="tns:Sirket" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectSirketById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectSirketByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectSirketByIdResult" type="tns:Sirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertSirketSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertSirket" />
+  </wsdl:message>
+  <wsdl:message name="InsertSirketSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertSirketResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSirketSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSirket" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSirketSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSirketResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllSirketsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAllSirkets" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllSirketsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAllSirketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectSirketByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectSirketById" />
+  </wsdl:message>
+  <wsdl:message name="SelectSirketByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectSirketByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SirketWebServiceSoap">
+    <wsdl:operation name="InsertSirket">
+      <wsdl:input message="tns:InsertSirketSoapIn" />
+      <wsdl:output message="tns:InsertSirketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSirket">
+      <wsdl:input message="tns:DeleteSirketSoapIn" />
+      <wsdl:output message="tns:DeleteSirketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllSirkets">
+      <wsdl:input message="tns:SelectAllSirketsSoapIn" />
+      <wsdl:output message="tns:SelectAllSirketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectSirketById">
+      <wsdl:input message="tns:SelectSirketByIdSoapIn" />
+      <wsdl:output message="tns:SelectSirketByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SirketWebServiceSoap" type="tns:SirketWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertSirket">
+      <soap:operation soapAction="http://tempuri.org/InsertSirket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSirket">
+      <soap:operation soapAction="http://tempuri.org/DeleteSirket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllSirkets">
+      <soap:operation soapAction="http://tempuri.org/SelectAllSirkets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSirketById">
+      <soap:operation soapAction="http://tempuri.org/SelectSirketById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SirketWebServiceSoap12" type="tns:SirketWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertSirket">
+      <soap12:operation soapAction="http://tempuri.org/InsertSirket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSirket">
+      <soap12:operation soapAction="http://tempuri.org/DeleteSirket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllSirkets">
+      <soap12:operation soapAction="http://tempuri.org/SelectAllSirkets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSirketById">
+      <soap12:operation soapAction="http://tempuri.org/SelectSirketById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SirketWebService">
+    <wsdl:port name="SirketWebServiceSoap" binding="tns:SirketWebServiceSoap">
+      <soap:address location="http://localhost:61799/SirketWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SirketWebServiceSoap12" binding="tns:SirketWebServiceSoap12">
+      <soap12:address location="http://localhost:61799/SirketWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
